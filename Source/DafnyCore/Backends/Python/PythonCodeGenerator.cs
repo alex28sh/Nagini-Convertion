@@ -1676,7 +1676,7 @@ namespace Microsoft.Dafny.Compilers {
       wr.Write("[");
       for (var i = 0; i < indices.Count; i++) {
         if (i > 0) {
-          wr.Write(", ");
+          wr.Write("][");
         }
         indices[i](wr);
       }
@@ -1783,7 +1783,8 @@ namespace Microsoft.Dafny.Compilers {
       } else {
         wr.Write("Forall(");
       }
-      collection(wr);
+      wr.Write(ConvertTypeToPython(collectionElementType));
+      // collection(wr);
       wr.Write(", ");
       var ret = wr.Fork();
       wr.Write(")");
@@ -2206,7 +2207,8 @@ namespace Microsoft.Dafny.Compilers {
     }
 
     protected override void EmitWiggleWaggleBoundedPool(bool inLetExprBody, ConcreteSyntaxTree wr, ConcreteSyntaxTree wStmts) {
-      throw new NotImplementedException();
+      wr.Write("int");
+      // throw new NotImplementedException();
     }
 
     protected override void EmitSetBoundedPool(Expression of, string propertySuffix, bool inLetExprBody, ConcreteSyntaxTree wr, ConcreteSyntaxTree wStmts) {
